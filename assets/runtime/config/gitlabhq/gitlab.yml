@@ -514,10 +514,10 @@ production: &base
                   issuer: '{{OAUTH_SAML_ISSUER}}',
                   certificate: '{{OAUTH_SAML_SP_CRT}}',
                   private_key: '{{OAUTH_SAML_SP_KEY}}',
-                  security: '{
+                  security: {
                     authn_requests_signed: "true",
                     digest_method: "XMLSecurity::Document::SHA1",
-                    signature_method: "http://www.w3.org/2000/09/xmldsig#rsa-sha1" }',
+                    want_assertions_encrypted: "true" },
                   attribute_statements: {
                     first_name: ['{{OAUTH_SAML_ATTRIBUTE_STATEMENTS_FIRST_NAME}}'],
                     last_name: ['{{OAUTH_SAML_ATTRIBUTE_STATEMENTS_LAST_NAME}}'],

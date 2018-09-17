@@ -622,11 +622,11 @@ gitlab_configure_oauth_saml() {
     exec_as_git sed -i "/groups_attribute: '',/d" ${GITLAB_CONFIG}
     exec_as_git sed -i "/external_groups: \\[\\],/d" ${GITLAB_CONFIG}
     # Remove undefined optional attributes
-    if [[ -z ${OAUTH_SAML_SP_KEY} ]] \
+    if [[ -z ${OAUTH_SAML_SP_KEY} ]]; then
       exec_as_git sed -i "/certificate: '',/d" ${GITLAB_CONFIG}
       exec_as_git sed -i "/private_key: '',/d" ${GITLAB_CONFIG}
       exec_as_git sed -i  \
-        "/security: '{$/d;/authn_requests_signed: \"true*/d;/digest_method: \"XML*/d;/signature_method: \"http:*/d" ${GITLAB_CONFIG}
+        "/security: '{$/d;/authn_requests_signed: \"true*/d;/digest_method: \"XML*/d;/want_assertions_encrypted: \"true*/d" ${GITLAB_CONFIG}
     fi
     gitlab_configure_oauth_saml_attribute_statements
   else
